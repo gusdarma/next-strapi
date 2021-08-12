@@ -1,3 +1,6 @@
-const withPlugins = require("next-compose-plugins");
-
-module.exports = withPlugins([], {});
+module.exports = {
+    i18n: {
+        locales: ["en", "fr"],
+        defaultLocale: "en",
+    },
+};
