@@ -1,6 +1,20 @@
 import Video from "../elements/video";
 
-const LargeVideo = ({ data }) => {
+interface typesLargeVideo{
+    data: {
+        title: string;
+        description: string;
+        video:{
+            url: string;
+            mime: string;
+        };
+        poster:{
+            url: string;
+        }
+    }
+}
+
+const LargeVideo: React.FC<typesLargeVideo> = ({ data }) => {
     return (
         <section className="container flex flex-col pt-12 pb-16 text-center align-middle">
             <h2 className="mb-6 title">{data.title}</h2>

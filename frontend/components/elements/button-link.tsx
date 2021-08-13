@@ -17,7 +17,7 @@ interface typesButtonLink {
         newTab: boolean;
     };
     appearance: string;
-    compact: boolean;
+    compact?: boolean;
 }
 
 const ButtonContent = ({ button, appearance, compact }: typesButtonContent) => {

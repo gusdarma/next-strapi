@@ -3,10 +3,16 @@ import NextImage from "../elements/image";
 import Video from "../elements/video";
 import CustomLink from "../elements/custom-link";
 
-const FeatureRowsGroup = ({ data }) => {
+interface typesFeatureRowsGroup{
+    data: {
+        features: (string | number)[]
+    }
+}
+
+const FeatureRowsGroup: React.FC<typesFeatureRowsGroup> = ({ data }) => {
     return (
         <div className="container flex flex-col gap-12 py-12">
-            {data.features.map((feature, index) => (
+            {data.features.map((feature: any, index: number) => (
                 <div
                     className={classNames(
                         // Common classes

@@ -1,12 +1,20 @@
 import { MdCheckBox } from "react-icons/md";
 import classNames from "classnames";
 
-const Pricing = ({ data }) => {
+interface typesPricing{
+    data: {
+        title: string;
+        plans: (string | number | boolean)[];
+        features: (string | number)[];
+    }
+}
+
+const Pricing: React.FC<typesPricing> = ({ data }) => {
     return (
         <div className="container py-12">
             <h1 className="text-4xl text-center">{data.title}</h1>
             <div className="flex flex-col gap-4 mt-6 lg:flex-row lg:justify-center">
-                {data.plans.map((plan) => (
+                {data.plans.map((plan: any) => (
                     <div
                         className={classNames(
                             // Common classes
@@ -40,7 +48,7 @@ const Pricing = ({ data }) => {
                             </span>
                         </p>
                         <ul className="flex flex-col gap-3 mt-4">
-                            {plan.features.map((feature) => (
+                            {plan.features.map((feature: any) => (
                                 <li
                                     className="flex flex-row items-center justify-between"
                                     key={feature.id}

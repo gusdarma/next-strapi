@@ -3,7 +3,21 @@ import { useState } from "react";
 import NextImage from "../elements/image";
 import CustomLink from "../elements/custom-link";
 
-const TestimonialsGroup = ({ data }) => {
+interface typesTestimonialGroup{
+    data: {
+        title: string;
+        description: string;
+        testimonials: any;
+        logos: (string | number)[];
+        link: {
+            text: string;
+            url: string;
+            newTab: boolean;
+        }
+    }
+}
+
+const TestimonialsGroup: React.FC<typesTestimonialGroup> = ({ data }) => {
     // Only show one testimonial at a time
     const [selectedTestimonialIndex, setSelectedTestimonialIndex] = useState(0);
     const selectedTestimonial = data.testimonials[selectedTestimonialIndex];
@@ -42,9 +56,7 @@ const TestimonialsGroup = ({ data }) => {
                     <CustomLink
                         link={{
                             url: selectedTestimonial.link,
-                            text: "",
                             newTab: false,
-                            id: 0,
                         }}
                     >
                         <span className="mt-6 tracking-wide text-blue-700 uppercase hover:underline with-arrow sm:self-end sm:mt-0">
@@ -56,7 +68,7 @@ const TestimonialsGroup = ({ data }) => {
             {/* Change selected testimonial (only if there is more than one) */}
             {data.testimonials.length > 1 && (
                 <div className="flex flex-row justify-center gap-4 mt-10">
-                    {data.testimonials.map((testimonial, index) => (
+                    {data.testimonials.map((testimonial: any, index:number) => (
                         <button
                             onClick={() => setSelectedTestimonialIndex(index)}
                             className={classNames(
@@ -76,7 +88,7 @@ const TestimonialsGroup = ({ data }) => {
             )}
             {/* Logos list */}
             <div className="flex flex-row flex-wrap items-center justify-center gap-6 px-6 mt-10 sm:gap-20 sm:px-0 ">
-                {data.logos.map((logo) => (
+                {data.logos.map((logo: any) => (
                     <NextImage
                         key={logo.id}
                         width="120"

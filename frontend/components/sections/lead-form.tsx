@@ -4,7 +4,16 @@ import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import Button from "../elements/button";
 
-const LeadForm = ({ data }) => {
+interface typesLeadForm{
+    data:{
+        title: string;
+        location: string;
+        emailPlaceholder: string;
+        submitButton: (string | number)[];
+    }
+}
+
+const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
     const [loading, setLoading] = useState(false);
 
     const LeadSchema = yup.object().shape({

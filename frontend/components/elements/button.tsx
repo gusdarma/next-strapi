@@ -1,14 +1,12 @@
 import classNames from "classnames";
 import Loader from "./loader";
 
-interface typesButtonObject {
-    id: number;
-    text: string;
-    type: string;
-}
-
 interface typesButtonLink {
-    button: typesButtonObject;
+    button: {
+        id?: number;
+        text?: string;
+        type?: string;
+    };
     appearance: string;
     compact: boolean;
     loading: boolean;

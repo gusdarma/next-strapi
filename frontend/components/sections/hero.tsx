@@ -3,7 +3,18 @@ import { getButtonAppearance } from "utils/button";
 import ButtonLink from "../elements/button-link";
 import NextImage from "../elements/image";
 
-const Hero = ({ data }) => {
+interface typesHero{
+    data: {
+        label: string;
+        title: string;
+        description: string;
+        buttons: (string | number)[];
+        smallTextWithLink : string;
+        picture: string;
+    }
+}
+
+const Hero: React.FC<typesHero> = ({ data }) => {
     return (
         <main className="container flex flex-col items-center justify-between py-12 md:flex-row">
             {/* Left column for content */}
@@ -20,7 +31,7 @@ const Hero = ({ data }) => {
                 <p className="mb-6 text-xl">{data.description}</p>
                 {/* Buttons row */}
                 <div className="flex flex-row flex-wrap gap-4">
-                    {data.buttons.map((button) => (
+                    {data.buttons.map((button : any) => (
                         <ButtonLink
                             button={button}
                             appearance={getButtonAppearance(

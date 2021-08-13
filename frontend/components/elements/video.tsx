@@ -5,12 +5,12 @@ interface typesVideo {
         url: string;
         mime: string;
     };
-    poster: {
+    poster?: {
         url: string;
     };
     className: string;
-    controls: boolean;
-    autoPlay: boolean;
+    controls?: boolean;
+    autoPlay?: boolean;
 }
 
 const Video : React.FC<typesVideo> = ({
