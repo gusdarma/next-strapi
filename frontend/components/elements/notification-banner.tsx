@@ -2,7 +2,15 @@ import Markdown from "react-markdown";
 import classNames from "classnames";
 import { MdClose } from "react-icons/md";
 
-const NotificationBanner = ({ data: { text, type }, closeSelf }) => {
+interface typesNotificationBanner {
+    data: {
+        text: string;
+        type : string;
+    }
+    closeSelf: any;
+}
+
+const NotificationBanner : React.FC<typesNotificationBanner> = ({ data: { text, type }, closeSelf }) => {
     return (
         <div
             className={classNames(

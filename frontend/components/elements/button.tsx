@@ -1,9 +1,22 @@
 import classNames from "classnames";
-import PropTypes from "prop-types";
-import { buttonLinkPropTypes } from "utils/types";
 import Loader from "./loader";
 
-const Button = ({
+interface typesButtonObject {
+    id: number;
+    text: string;
+    type: string;
+}
+
+interface typesButtonLink {
+    button: typesButtonObject;
+    appearance: string;
+    compact: boolean;
+    loading: boolean;
+    type: any;
+    handleClick: any;
+}
+
+const Button: React.FC<typesButtonLink> = ({
     button,
     appearance,
     compact = false,
@@ -11,8 +24,10 @@ const Button = ({
     loading = false,
     type,
 }) => {
+    console.log(button, "yuhu button ini ");
+
     return (
-        <button link={button} onClick={handleClick} type={type}>
+        <button onClick={handleClick} type={type}>
             <div
                 className={classNames(
                     // Common classes
@@ -52,17 +67,6 @@ const Button = ({
             </div>
         </button>
     );
-};
-
-Button.propTypes = {
-    button: buttonLinkPropTypes,
-    appearance: PropTypes.oneOf([
-        "dark",
-        "white-outline",
-        "white",
-        "dark-outline",
-    ]),
-    compact: PropTypes.bool,
 };
 
 export default Button;

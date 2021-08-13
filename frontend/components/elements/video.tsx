@@ -1,8 +1,19 @@
-import PropTypes from "prop-types";
 import { getStrapiMedia } from "utils/media";
-import { mediaPropTypes } from "utils/types";
 
-const Video = ({
+interface typesVideo {
+    media: {
+        url: string;
+        mime: string;
+    };
+    poster: {
+        url: string;
+    };
+    className: string;
+    controls: boolean;
+    autoPlay: boolean;
+}
+
+const Video : React.FC<typesVideo> = ({
     media,
     poster,
     className,
@@ -22,14 +33,6 @@ const Video = ({
             <source src={fullVideoUrl} type={media.mime} />
         </video>
     );
-};
-
-Video.propTypes = {
-    media: mediaPropTypes.isRequired,
-    poster: mediaPropTypes,
-    className: PropTypes.string,
-    controls: PropTypes.bool,
-    autoPlay: PropTypes.bool,
 };
 
 export default Video;

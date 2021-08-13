@@ -1,22 +1,32 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-import { getButtonAppearance } from "utils/button";
-import {
-    mediaPropTypes,
-    linkPropTypes,
-    buttonLinkPropTypes,
-} from "utils/types";
 import { MdMenu } from "react-icons/md";
 import MobileNavMenu from "./mobile-nav-menu";
 import ButtonLink from "./button-link";
 import NextImage from "./image";
 import CustomLink from "./custom-link";
 import LocaleSwitch from "../locale-switch";
+import { getButtonAppearance } from "utils/button";
 
-const Navbar = ({ navbar, pageContext }) => {
+interface typesNavbar {
+    navbar :{
+        logo: string;
+        links: (string | number)[];
+        button: {
+            id: number;
+            url: string;
+            text: string;
+            newTab: boolean;
+            type: string;
+        };
+    };
+    pageContext: {
+        localizedPaths: string;
+    };
+}
+
+const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
     const router = useRouter();
     const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false);
 
@@ -38,11 +48,11 @@ const Navbar = ({ navbar, pageContext }) => {
                         </Link>
                         {/* List of links on desktop */}
                         <ul className="flex-row items-baseline hidden gap-4 ml-10 list-none md:flex">
-                            {navbar.links.map((navLink) => (
+                            {navbar.links.map((navLink : any) => (
                                 <li key={navLink.id}>
                                     <CustomLink
                                         link={navLink}
-                                        locale={router.locale}
+                                        // locale={router.locale}
                                     >
                                         <div className="px-2 py-1 hover:text-gray-900">
                                             {navLink.text}
@@ -98,18 +108,6 @@ const Navbar = ({ navbar, pageContext }) => {
             )}
         </>
     );
-};
-
-Navbar.propTypes = {
-    navbar: PropTypes.shape({
-        logo: PropTypes.shape({
-            image: mediaPropTypes,
-            url: PropTypes.string,
-        }),
-        links: PropTypes.arrayOf(linkPropTypes),
-        button: buttonLinkPropTypes,
-    }),
-    initialLocale: PropTypes.string,
 };
 
 export default Navbar;

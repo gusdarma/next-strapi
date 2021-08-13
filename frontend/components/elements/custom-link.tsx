@@ -1,8 +1,13 @@
 import Link from "next/link";
-import PropTypes from "prop-types";
-import { linkPropTypes } from "utils/types";
 
-const CustomLink = ({ link, children }) => {
+interface typesCustomlink {
+    link: {
+        url: string;
+        newTab: boolean;
+    };
+}
+
+const CustomLink: React.FC<typesCustomlink> = ({ link, children }) => {
     const isInternalLink = link.url.startsWith("/");
 
     // For internal links, use the Next.js Link component
@@ -28,14 +33,6 @@ const CustomLink = ({ link, children }) => {
             {children}
         </a>
     );
-};
-
-CustomLink.propTypes = {
-    link: linkPropTypes,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node,
-    ]).isRequired,
 };
 
 export default CustomLink;

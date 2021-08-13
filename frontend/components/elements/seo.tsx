@@ -1,11 +1,23 @@
 import { NextSeo } from "next-seo";
-import PropTypes from "prop-types";
 import { getStrapiMedia } from "utils/media";
-import { mediaPropTypes } from "utils/types";
 
-const Seo = ({ metadata }) => {
+interface typesSeo {
+    metadata : {
+        metaTitle : string;
+        metaDescription: string;
+        shareImage : {
+            formats: (string | number)[];
+        };
+        twitterCardType : string;
+        twitterUsername : string;
+    }
+}
+
+const Seo : React.FC<typesSeo>  = ({ metadata }) => {
     // Prevent errors if no metadata was set
     if (!metadata) return null;
+
+    console.log(metadata, 'yuhuini seo')
 
     return (
         <NextSeo
@@ -19,7 +31,7 @@ const Seo = ({ metadata }) => {
                 // Careful: if you disable image optimization in Strapi, this will break
                 ...(metadata.shareImage && {
                     images: Object.values(metadata.shareImage.formats).map(
-                        (image) => {
+                        (image: any) => {
                             return {
                                 url: getStrapiMedia(image.url),
                                 width: image.width,
@@ -41,16 +53,6 @@ const Seo = ({ metadata }) => {
             }}
         />
     );
-};
-
-Seo.propTypes = {
-    metadata: PropTypes.shape({
-        metaTitle: PropTypes.string.isRequired,
-        metaDescription: PropTypes.string.isRequired,
-        shareImage: mediaPropTypes,
-        twitterCardType: PropTypes.string,
-        twitterUsername: PropTypes.string,
-    }),
 };
 
 export default Seo;
