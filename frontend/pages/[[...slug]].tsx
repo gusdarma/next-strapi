@@ -40,8 +40,6 @@ export async function getStaticPaths(context) {
     //     return localePages;
     // });
 
-    console.log(context, "yuhu");
-
     const allPages = context.locales.map(async (locale) => {
         const localePages = await fetchAPI(`/pages?_locale=${locale}`);
         return localePages;

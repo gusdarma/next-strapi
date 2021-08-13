@@ -17,8 +17,6 @@ const Seo : React.FC<typesSeo>  = ({ metadata }) => {
     // Prevent errors if no metadata was set
     if (!metadata) return null;
 
-    console.log(metadata, 'yuhuini seo')
-
     return (
         <NextSeo
             title={metadata.metaTitle}

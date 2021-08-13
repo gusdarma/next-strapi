@@ -10,7 +10,12 @@ interface typesHero{
         description: string;
         buttons: (string | number)[];
         smallTextWithLink : string;
-        picture: string;
+        picture: {
+            url: string;
+            alternativeText: string;
+            width: number;
+            height: number;
+        };
     }
 }
 
@@ -49,6 +54,7 @@ const Hero: React.FC<typesHero> = ({ data }) => {
             </div>
             {/* Right column for the image */}
             <div className="flex-shrink-0 w-full mt-6 md:w-6/12 md:mt-0">
+                {console.log(data.picture, 'ini datanya')}
                 <NextImage media={data.picture} />
             </div>
         </main>

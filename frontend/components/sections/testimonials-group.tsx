@@ -39,8 +39,8 @@ const TestimonialsGroup: React.FC<typesTestimonialGroup> = ({ data }) => {
                 <div className="flex flex-col justify-between px-4 py-4 sm:px-12 sm:pt-12 sm:pb-4">
                     <div>
                         <NextImage
-                            width="120"
-                            height="33"
+                            width={120}
+                            height={33}
                             media={selectedTestimonial.logo}
                         />
                         <p className="mb-6 italic">
@@ -91,8 +91,8 @@ const TestimonialsGroup: React.FC<typesTestimonialGroup> = ({ data }) => {
                 {data.logos.map((logo: any) => (
                     <NextImage
                         key={logo.id}
-                        width="120"
-                        height="33"
+                        width={120}
+                        height={33}
                         media={logo.logo}
                     />
                 ))}

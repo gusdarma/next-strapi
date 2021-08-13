@@ -2,3 +2,5 @@
 node_modules
 # next.js build files
 .next
+#remove macOS file
+.DS_Store

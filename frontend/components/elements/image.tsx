@@ -3,10 +3,21 @@ import Image from "next/image";
 import PropTypes from "prop-types";
 import { mediaPropTypes } from "utils/types";
 
-const NextImage = ({ media, ...props }) => {
+interface typesNextImage{
+    media: {
+        url: string;
+        alternativeText: string;
+        width: number;
+        height:number;
+    };
+    width?: number;
+    height?: number;
+}
+
+const NextImage: React.FC<typesNextImage> = ({ media, ...props }) => {
     const { url, alternativeText } = media;
 
-    const loader = ({ src }) => {
+    const loader = ({ src } : any) => {
         return getStrapiMedia(src);
     };
 
@@ -36,9 +47,5 @@ const NextImage = ({ media, ...props }) => {
     );
 };
 
-Image.propTypes = {
-    media: mediaPropTypes.isRequired,
-    className: PropTypes.string,
-};
 
 export default NextImage;

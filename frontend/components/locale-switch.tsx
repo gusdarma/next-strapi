@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
-import PropTypes from "prop-types";
 import Link from "next/link";
 
 import Cookies from "js-cookie";
@@ -8,15 +7,25 @@ import { MdExpandMore } from "react-icons/md";
 import WorldIcon from "./icons/world";
 
 import { useOnClickOutside } from "../utils/hooks";
+import { getLocalizedPage, localizePath } from "utils/localize";
+import { string } from "yup/lib/locale";
 
-const LocaleSwitch = ({ pageContext }) => {
+interface typesLocaleSwitch{
+    pageContext:{
+        locale?: string;
+        localizedPaths: any;
+    };
+}
+
+const LocaleSwitch: React.FC<typesLocaleSwitch> = ({ pageContext }) => {
+
     const isMounted = useRef(false);
     const select = useRef();
     const router = useRouter();
     const [locale, setLocale] = useState();
     const [showing, setShowing] = useState(false);
 
-    const handleLocaleChange = async (selectedLocale) => {
+    const handleLocaleChange = async (selectedLocale: any) => {
         // Persist the user's language preference
         // https://nextjs.org/docs/advanced-features/i18n-routing#leveraging-the-next_locale-cookie
         Cookies.set("NEXT_LOCALE", selectedLocale);
@@ -58,6 +67,8 @@ const LocaleSwitch = ({ pageContext }) => {
         };
     }, [locale, router, pageContext]);
 
+    console.log(select, 'ini refnya');
+
     return (
         <div ref={select} className="relative ml-4 ">
             <button
@@ -75,13 +86,12 @@ const LocaleSwitch = ({ pageContext }) => {
                 }`}
             >
                 {pageContext.localizedPaths &&
-                    pageContext.localizedPaths.map(({ href, locale }) => {
+                    pageContext.localizedPaths.map(({ href, locale}: any) => {
                         return (
                             <Link
                                 href={href}
                                 key={locale}
                                 locale={locale}
-                                role="option"
                                 passHref
                             >
                                 <p
@@ -98,8 +108,5 @@ const LocaleSwitch = ({ pageContext }) => {
     );
 };
 
-LocaleSwitch.propTypes = {
-    initialLocale: PropTypes.string,
-};
 
 export default LocaleSwitch;

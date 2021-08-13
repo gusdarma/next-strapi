@@ -7,7 +7,12 @@ import CustomLink from "./custom-link";
 
 interface typesMobileNavMenu {
     navbar :{
-        logo: string;
+        logo: {
+            url: string;
+            alternativeText: string;
+            width: number;
+            height: number;
+        };
         links: (string | number)[];
         button: {
             id: number;
@@ -30,7 +35,7 @@ const MobileNavMenu : React.FC<typesMobileNavMenu> = ({ navbar, closeSelf }) => 
                 {/* Top section */}
                 <div className="flex flex-row items-center justify-between py-2">
                     {/* Company logo */}
-                    <NextImage width="120" height="33" media={navbar.logo} />
+                    <NextImage width={120} height={33} media={navbar.logo} />
                     {/* Close button */}
                     <button onClick={closeSelf} className="px-1 py-1">
                         <MdClose className="w-auto h-8" />

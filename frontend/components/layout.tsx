@@ -1,11 +1,49 @@
-import { useState } from "react";
+import { ReactText, useState } from "react";
 import Navbar from "./elements/navbar";
 import Footer from "./elements/footer";
 import NotificationBanner from "./elements/notification-banner";
 
-const Layout = ({ children, global, pageContext }) => {
-    const { navbar, footer, notificationBanner } = global;
+interface typesReact{
+    children: object;
+    global: {
+        navbar: {
+            logo: {
+                url: string;
+                alternativeText: string;
+                width: number;
+                height: number;
+            };
+            links: ReactText[];
+            button: {
+                id: number;
+                url: string;
+                text: string;
+                newTab: boolean;
+                type: string;
+            };
+        };
+        footer: {
+            logo: {
+                url: string;
+                alternativeText: string;
+                width: number;
+                height: number;
+            };
+            smallText: string;
+            columns: ReactText[];
+        };
+        notificationBanner: {
+            text: string;
+            type: string;
+        };
+    };
+    pageContext: {
+        localizedPaths: string;
+    };
+}
 
+const Layout: React.FC<typesReact> = ({ children, global, pageContext }) => {
+    const { navbar, footer, notificationBanner } = global;
     const [bannerIsShown, setBannerIsShown] = useState(true);
     return (
         <div className="flex flex-col justify-between min-h-screen">

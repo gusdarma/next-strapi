@@ -22,7 +22,6 @@ const Button: React.FC<typesButtonLink> = ({
     loading = false,
     type,
 }) => {
-    console.log(button, "yuhu button ini ");
 
     return (
         <button onClick={handleClick} type={type}>

@@ -10,7 +10,7 @@ import Pricing from "./sections/pricing";
 import LeadForm from "./sections/lead-form";
 
 // Map Strapi sections to section components
-const sectionComponents = {
+const sectionComponents: any = {
     "sections.hero": Hero,
     "sections.large-video": LargeVideo,
     "sections.feature-columns-group": FeatureColumnsGroup,
@@ -22,8 +22,18 @@ const sectionComponents = {
     "sections.lead-form": LeadForm,
 };
 
+interface typesSection{
+    sectionData: {
+        __component: string;
+    }
+}
+interface typesSections{
+    sections:(string | number)[];
+    preview?: boolean;
+}
+
 // Display a section individually
-const Section = ({ sectionData }) => {
+const Section: React.FC<typesSection> = ({ sectionData }) => {
     // Prepare the component
     const SectionComponent = sectionComponents[sectionData.__component];
 
@@ -57,13 +67,14 @@ const PreviewModeBanner = () => {
 };
 
 // Display the list of sections
-const Sections = ({ sections, preview }) => {
+const Sections: React.FC<typesSections> = ({ sections, preview }) => {
+    console.log(preview, "ini preview")
     return (
         <div className="flex flex-col">
             {/* Show a banner if preview mode is on */}
             {preview && <PreviewModeBanner />}
             {/* Show the actual sections */}
-            {sections.map((section) => (
+            {sections.map((section: any) => (
                 <Section
                     sectionData={section}
                     key={`${section.__component}${section.id}`}

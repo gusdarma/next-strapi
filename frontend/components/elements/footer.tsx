@@ -3,16 +3,16 @@ import CustomLink from "./custom-link";
 
 interface typesFooter {
     footer: {
-        logo: string;
+        logo: {
+            url: string;
+            alternativeText: string;
+            width: number;
+            height: number;
+        };
         smallText: string;
         columns: (string | number)[];
     }
 };
-
-interface typesFooterColumn{
-    id: number | string;
-
-}
 
 const Footer: React.FC<typesFooter> = ({ footer }) => {
     return (
@@ -21,8 +21,8 @@ const Footer: React.FC<typesFooter> = ({ footer }) => {
                 <div>
                     {footer.logo && (
                         <NextImage
-                            width="120"
-                            height="33"
+                            width={120}
+                            height={33}
                             media={footer.logo}
                         />
                     )}
@@ -58,5 +58,6 @@ const Footer: React.FC<typesFooter> = ({ footer }) => {
         </footer>
     );
 };
+
 
 export default Footer;

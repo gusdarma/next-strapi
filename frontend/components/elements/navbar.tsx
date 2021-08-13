@@ -11,7 +11,12 @@ import { getButtonAppearance } from "utils/button";
 
 interface typesNavbar {
     navbar :{
-        logo: string;
+        logo: {
+            url: string;
+            alternativeText: string;
+            width: number;
+            height: number;
+        };
         links: (string | number)[];
         button: {
             id: number;
@@ -40,8 +45,8 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
                         <Link href="/">
                             <a className="w-32 h-8">
                                 <NextImage
-                                    width="120"
-                                    height="33"
+                                    width={120}
+                                    height={33}
                                     media={navbar.logo}
                                 />
                             </a>
