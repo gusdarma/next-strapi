@@ -5,7 +5,7 @@
 //     return imageUrl;
 // }
 
-export function getStrapiMedia(url) {
+export function getStrapiMedia(url: string | null | undefined) {
     if (url == null) {
         return null;
     }

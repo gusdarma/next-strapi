@@ -1,14 +1,14 @@
 import { fetchAPI } from "./api";
 
-export async function getLocalizedPage(targetLocale, pageContext) {
+export async function getLocalizedPage(targetLocale: string, pageContext: { locale?: string | undefined; localizedPaths?: any; localizations?: any; }) {
     const localization = pageContext.localizations.find(
-        (localization) => localization.locale === targetLocale,
+        (localization: { locale: string; }) => localization.locale === targetLocale,
     );
     const localePage = await fetchAPI(`/pages/${localization.id}`);
     return localePage;
 }
 
-export function localizePath(page) {
+export function localizePath(page: any) {
     const { locale, defaultLocale, slug } = page;
 
     if (locale === defaultLocale) {
@@ -20,8 +20,8 @@ export function localizePath(page) {
     return `/${locale}/${slug}`;
 }
 
-export function getLocalizedPaths(page) {
-    const paths = page.locales.map((locale) => {
+export function getLocalizedPaths(page: { locale?: any; locales: any; defaultLocale?: any; slug?: any; localizations?: any; }) {
+    const paths = page.locales.map((locale: any) => {
         return {
             locale: locale,
             href: localizePath({ ...page, locale }),

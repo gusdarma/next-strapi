@@ -6,9 +6,11 @@ import { DefaultSeo } from "next-seo";
 import { getStrapiMedia } from "utils/media";
 import { getGlobalData } from "utils/api";
 import "../src/styles/global.css";
+import { AppContextType } from "next/dist/next-server/lib/utils";
+import { Router } from "next/router";
 
 
-const MyApp: React.FC<typesMyApp> = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: any) => {
     // Extract the data we need
     const { global } = pageProps;
     if (global == null) {
@@ -25,7 +27,7 @@ const MyApp: React.FC<typesMyApp> = ({ Component, pageProps }) => {
             <Head>
                 <link
                     rel="shortcut icon"
-                    href={getStrapiMedia(global.favicon.url)}
+                    ref={getStrapiMedia(global.favicon.url)}
                 />
             </Head>
             {/* Global site metadata */}
@@ -59,7 +61,7 @@ const MyApp: React.FC<typesMyApp> = ({ Component, pageProps }) => {
 // have getStaticProps. So [[...slug]] pages still get SSG.
 // Hopefully we can replace this with getStaticProps once this issue is fixed:
 // https://github.com/vercel/next.js/discussions/10949
-MyApp.getInitialProps = async (appContext) => {
+MyApp.getInitialProps = async (appContext: AppContextType<Router>) => {
     // Calls page's `getInitialProps` and fills `appProps.pageProps`
     const appProps = await App.getInitialProps(appContext);
     // const globalLocale = await getGlobalData(appContext.router.locale);

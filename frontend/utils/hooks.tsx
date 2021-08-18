@@ -10,13 +10,14 @@ export function useLockBodyScroll() {
     document.body.style.overflow = 'hidden'
 
     // Re-enable scrolling when component unmounts
+
     return () => (document.body.style.overflow = originalStyle)
   }, []) // Empty array ensures effect is only run on mount and unmount
 }
 
-export function useOnClickOutside(ref, handler) {
+export function useOnClickOutside(ref:any, handler:any) {
   useEffect(() => {
-    const listener = (event) => {
+    const listener = (event: { target: any }) => {
       // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target)) {
         return

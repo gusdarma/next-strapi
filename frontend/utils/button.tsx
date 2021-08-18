@@ -1,6 +1,6 @@
 // Decide what the button will look like based on its type (primary or secondary)
 // and on its background (light or dark).
-export function getButtonAppearance(type, background) {
+export function getButtonAppearance(type: string, background: string) {
   if (type === 'primary') {
     if (background === 'light') {
       // Dark primary button on a light background

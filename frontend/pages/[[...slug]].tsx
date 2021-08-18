@@ -10,7 +10,7 @@ import { getLocalizedPaths } from "utils/localize";
 // optional catch all routes feature. See the related docs:
 // https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
 
-const DynamicPage = ({ sections, metadata, preview, global, pageContext }) => {
+const DynamicPage = ({ sections, metadata, preview, global, pageContext } : any) => {
     const router = useRouter();
 
     // Check if the required data was provided
@@ -33,7 +33,7 @@ const DynamicPage = ({ sections, metadata, preview, global, pageContext }) => {
     );
 };
 
-export async function getStaticPaths(context) {
+export async function getStaticPaths(context: { locales: any[]; }) {
     // Get all pages from Strapi
     // const allPages = context.locales.map(async (locale) => {
     //     const localePages = await fetchAPI(`/pages?_locale=${locale}`);
@@ -61,7 +61,7 @@ export async function getStaticPaths(context) {
     return { paths, fallback: true };
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps(context: { params: any; locale: any; locales: any; defaultLocale: any; preview?: null | undefined; }) {
     const { params, locale, locales, defaultLocale, preview = null } = context;
 
     const globalLocale = await getGlobalData(locale);
