@@ -26,11 +26,15 @@ const Video : React.FC<typesVideo> = ({
     return (
         <video
             className={className}
+            //@ts-ignore
             poster={fullPosterUrl}
             controls={controls}
             autoPlay={autoPlay}
         >
-            <source src={fullVideoUrl} type={media.mime} />
+            <source
+            //@ts-ignore
+            src={fullVideoUrl}
+            type={media.mime} />
         </video>
     );
 };

@@ -21,6 +21,7 @@ const Seo : React.FC<typesSeo>  = ({ metadata }) => {
         <NextSeo
             title={metadata.metaTitle}
             description={metadata.metaDescription}
+            //@ts-ignore
             openGraph={{
                 // Title and description are mandatory
                 title: metadata.metaTitle,

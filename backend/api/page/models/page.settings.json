@@ -13,6 +13,11 @@
   "pluginOptions": {
     "i18n": {
       "localized": true
+    },
+    "preview-content": {
+      "previewable": true,
+      "url": "http://localhost:3000/api/preview?&secret=yuhu&slug=<%= slug %>",
+      "usesValuesInUrl": true
     }
   },
   "attributes": {
@@ -21,6 +26,11 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        },
+        "preview-content": {
+          "previewable": true,
+          "url": "http://localhost:3000/api/preview?&secret=yuhu&slug=<%= slug %>",
+          "usesValuesInUrl": true
         }
       }
     },
@@ -32,6 +42,11 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        },
+        "preview-content": {
+          "previewable": true,
+          "url": "http://localhost:3000/api/preview?&secret=yuhu&slug=<%= slug %>",
+          "usesValuesInUrl": true
         }
       }
     },
@@ -51,20 +66,27 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        },
+        "preview-content": {
+          "previewable": true,
+          "url": "http://localhost:3000/api/preview?&secret=yuhu&slug=<%= slug %>",
+          "usesValuesInUrl": true
         }
       }
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "published",
-        "draft"
-      ],
+      "enum": ["published", "draft"],
       "default": "draft",
       "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
+        },
+        "preview-content": {
+          "previewable": true,
+          "url": "http://localhost:3000/api/preview?&secret=yuhu&slug=<%= slug %>",
+          "usesValuesInUrl": true
         }
       }
     },
@@ -72,6 +94,11 @@
       "pluginOptions": {
         "i18n": {
           "localized": false
+        },
+        "preview-content": {
+          "previewable": true,
+          "url": "http://localhost:3000/api/preview?&secret=yuhu&slug=<%= slug %>",
+          "usesValuesInUrl": true
         }
       },
       "type": "string",

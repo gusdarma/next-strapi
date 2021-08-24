@@ -1,7 +1,7 @@
 import { getStrapiMedia } from "utils/media";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import { mediaPropTypes } from "utils/types";
+// import { mediaPropTypes } from "utils/types";
 
 interface typesNextImage{
     media: {
@@ -28,7 +28,8 @@ const NextImage: React.FC<typesNextImage> = ({ media, ...props }) => {
                 loader={loader}
                 src={url}
                 alt={alternativeText || ""}
-                {...props}
+                width={props.width}
+                height={props.height}
             />
         );
     }

@@ -37,6 +37,8 @@ export async function fetchAPI(path: string , options = {}) {
  */
 export async function getPageData(params: { slug: any; }, locale: any, preview: any) {
 
+    console.log(params.slug, 'ini di api');
+
     const slug = params.slug.join("/");
     // Find the pages that match this slug
     const pagesData = await fetchAPI(

@@ -10199,7 +10199,7 @@ strapi-generate@3.6.6:
     reportback "^2.0.2"
     strapi-utils "3.6.6"
 
-strapi-helper-plugin@3.6.6:
+strapi-helper-plugin@3.6.6, strapi-helper-plugin@^3.6.3, strapi-helper-plugin@^3.6.6:
   version "3.6.6"
   resolved "https://registry.yarnpkg.com/strapi-helper-plugin/-/strapi-helper-plugin-3.6.6.tgz#bf63ff22d51cf1b503195309146f7872c00379ec"
   integrity sha512-bepyrXBg5AI4iJ0JxU4uL529DV2ia1+o3KELVgl6g5d+GQx+ImJ2SsqsDvz4y3hIw2oaINF0ltmXDque1LbpSw==
@@ -10350,6 +10350,14 @@ strapi-plugin-i18n@3.6.6:
     pluralize "8.0.0"
     strapi-utils "3.6.6"
 
+strapi-plugin-preview-content@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-preview-content/-/strapi-plugin-preview-content-1.3.1.tgz#1e08107a3f3eea6acb1c0c3d8b3b23a48bee992e"
+  integrity sha512-TdlC+vjUSVe6AiDT8S7eDNnbTyYQHTKvPs4oDcnYWQlDL27YfKse7U4dVvCJYiWwIetLWoeLUCwkDcc6WQ6whw==
+  dependencies:
+    strapi-helper-plugin "^3.6.3"
+    strapi-utils "^3.6.3"
+
 strapi-plugin-upload@3.6.6:
   version "3.6.6"
   resolved "https://registry.yarnpkg.com/strapi-plugin-upload/-/strapi-plugin-upload-3.6.6.tgz#62ec7ec8026ce4478b247c1c422c4615a5d29b93"
@@ -10430,7 +10438,7 @@ strapi-provider-upload-local@3.6.6:
   resolved "https://registry.yarnpkg.com/strapi-provider-upload-local/-/strapi-provider-upload-local-3.6.6.tgz#fa6ed4057a49993add238a679e531d3bc02150d6"
   integrity sha512-EqHXhaR8u0/+vB93KUTRvUvAuKhsGWWwYf6Nl1T6K4N0IyCQPsQFXkJT8A+oN553He8+4V8fkXts9LRyoa/aBA==
 
-strapi-utils@3.6.6:
+strapi-utils@3.6.6, strapi-utils@^3.6.3:
   version "3.6.6"
   resolved "https://registry.yarnpkg.com/strapi-utils/-/strapi-utils-3.6.6.tgz#f002d96f025c9fae2f8fb4d2628e28c12037385f"
   integrity sha512-vZavsM/6CVNecoznhqJBBOrrDMbPMSLSLqA2GgQ0DiimVLLsMC070uaROmRCkKw+DTgLqZDzi2mih0kKJXruTg==

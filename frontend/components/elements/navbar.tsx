@@ -9,6 +9,7 @@ import CustomLink from "./custom-link";
 import LocaleSwitch from "../locale-switch";
 import { getButtonAppearance } from "utils/button";
 
+
 interface typesNavbar {
     navbar :{
         logo: {
@@ -38,7 +39,7 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
     return (
         <>
             {/* The actual navbar */}
-            <nav className="py-6 border-b-2 border-gray-200 sm:py-2">
+            <nav className="w-full py-6 duration-100 delay-100 bg-white border-b-2 border-gray-200 sm:py-2">
                 <div className="container flex flex-row items-center justify-between">
                     {/* Content aligned to the left */}
                     <div className="flex flex-row items-center">
@@ -76,10 +77,15 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
                         )}
                         {/* Hamburger menu on mobile */}
                         <button
-                            onClick={() => setMobileMenuIsShown(true)}
+                            onClick={() => setMobileMenuIsShown(!mobileMenuIsShown)}
                             className="block p-1 md:hidden"
                         >
-                            <MdMenu className="w-auto h-8" />
+                            {/* <MdMenu className="w-auto h-8" /> */}
+                            <div className={`hamburger-menu ${mobileMenuIsShown ?'open':''}`}>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </button>
                         {/* CTA button on desktop */}
                         {navbar.button && (
@@ -102,15 +108,38 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
                         )}
                     </div>
                 </div>
+                {mobileMenuIsShown && (
+                    <div className="container absolute pt-12 pb-6 duration-1000 delay-1000 bg-white shadow-lg md:hidden">
+                        <ul className="flex flex-col items-baseline gap-4 mb-10 text-xl list-none">
+                            {navbar.links.map((navLink: any) => (
+                                <li key={navLink.id} className="block w-full">
+                                    <CustomLink link={navLink}>
+                                        <div className="flex flex-row items-center justify-between hover:text-gray-900">
+                                            <span>{navLink.text}</span>
+                                        </div>
+                                    </CustomLink>
+                                </li>
+                            ))}
+                        </ul>
+                        <ButtonLink
+                            button={navbar.button}
+                            appearance={getButtonAppearance(
+                                navbar.button.type,
+                                "light",
+                            )}
+                            compact
+                        />
+                    </div>
+                )}
             </nav>
 
             {/* Mobile navigation menu panel */}
-            {mobileMenuIsShown && (
+            {/* {mobileMenuIsShown && (
                 <MobileNavMenu
                     navbar={navbar}
                     closeSelf={() => setMobileMenuIsShown(false)}
                 />
-            )}
+            )} */}
         </>
     );
 };

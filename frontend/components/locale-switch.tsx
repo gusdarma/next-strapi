@@ -53,12 +53,14 @@ const LocaleSwitch: React.FC<typesLocaleSwitch> = ({ pageContext }) => {
                 router.push(
                     `${localizePath({ ...pageContext, ...localePage })}`,
                     `${localizePath({ ...pageContext, ...localePage })}`,
+                    //@ts-ignore
                     { locale: localePage.locale },
                 );
             }
             setShowing(false);
         };
 
+        //@ts-ignore
         setLocale(localeCookie || router.locale);
         checkLocaleMismatch();
 
@@ -70,6 +72,7 @@ const LocaleSwitch: React.FC<typesLocaleSwitch> = ({ pageContext }) => {
     console.log(select, 'ini refnya');
 
     return (
+        //@ts-ignore
         <div ref={select} className="relative ml-4 ">
             <button
                 type="button"

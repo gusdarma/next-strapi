@@ -36,11 +36,15 @@ const MyApp = ({ Component, pageProps }: any) => {
                 title="Page"
                 description={metadata.metaDescription}
                 openGraph={{
+                    //@ts-ignore
                     images: Object.values(metadata.shareImage.formats).map(
                         (image) => {
                             return {
+                                //@ts-ignore
                                 url: getStrapiMedia(image.url),
+                                //@ts-ignore
                                 width: image.width,
+                                //@ts-ignore
                                 height: image.height,
                             };
                         },

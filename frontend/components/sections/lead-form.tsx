@@ -31,6 +31,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
                         setLoading(true);
 
                         try {
+                            //@ts-ignore
                             setErrors({ api: null });
                             await fetchAPI("/lead-form-submissions", {
                                 method: "POST",
@@ -40,6 +41,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
                                 }),
                             });
                         } catch (err) {
+                            //@ts-ignore
                             setErrors({ api: err.message });
                         }
 
@@ -58,6 +60,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
                                 />
                                 <Button
                                     type="submit"
+                                    //@ts-ignore
                                     button={data.submitButton}
                                     disabled={isSubmitting}
                                     loading={loading}
@@ -67,6 +70,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
                                 {(errors.email &&
                                     touched.email &&
                                     errors.email) ||
+                                    //@ts-ignore
                                     errors.api}
                             </p>
                         </div>
