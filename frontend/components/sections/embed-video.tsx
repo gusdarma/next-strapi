@@ -5,9 +5,6 @@ interface typesEmbedLink {
 }
 
 const Embed: React.FC<typesEmbedLink> = (data) => {
-
-    console.log(data, 'ini datanya')
-
     return (
         <div className="container py-12">
             <div className="video-responsive">

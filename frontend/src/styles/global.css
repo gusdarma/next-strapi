@@ -128,7 +128,7 @@ html {
     transition: .25s ease-in-out;
   }
   @media(max-width:1024px){
-    .video-responsive{
+    .video-responsive iframe{
       width:100%;
     }
   }

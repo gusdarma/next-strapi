@@ -9,6 +9,7 @@ import RichText from "./sections/rich-text";
 import Pricing from "./sections/pricing";
 import LeadForm from "./sections/lead-form";
 import Embed from "./sections/embed-video";
+import ModalContent from "./sections/modal-content";
 
 // Map Strapi sections to section components
 const sectionComponents: any = {
@@ -22,6 +23,7 @@ const sectionComponents: any = {
     "sections.pricing": Pricing,
     "sections.lead-form": LeadForm,
     "sections.embed-video": Embed,
+    "sections.modal-content": ModalContent,
 };
 
 interface typesSection{
