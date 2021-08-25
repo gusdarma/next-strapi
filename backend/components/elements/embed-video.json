@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_elements_embed_videos",
+  "info": {
+    "name": "Embed Video",
+    "icon": "backspace"
+  },
+  "options": {},
+  "attributes": {
+    "urlvideo": {
+      "type": "string"
+    }
+  }
+}

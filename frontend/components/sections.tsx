@@ -8,6 +8,7 @@ import TestimonialsGroup from "./sections/testimonials-group";
 import RichText from "./sections/rich-text";
 import Pricing from "./sections/pricing";
 import LeadForm from "./sections/lead-form";
+import Embed from "./sections/embed-video";
 
 // Map Strapi sections to section components
 const sectionComponents: any = {
@@ -20,6 +21,7 @@ const sectionComponents: any = {
     "sections.rich-text": RichText,
     "sections.pricing": Pricing,
     "sections.lead-form": LeadForm,
+    "sections.embed-video": Embed,
 };
 
 interface typesSection{
@@ -34,6 +36,7 @@ interface typesSections{
 
 // Display a section individually
 const Section: React.FC<typesSection> = ({ sectionData }) => {
+
     // Prepare the component
     const SectionComponent = sectionComponents[sectionData.__component];
 
@@ -68,7 +71,7 @@ const PreviewModeBanner = () => {
 
 // Display the list of sections
 const Sections: React.FC<typesSections> = ({ sections, preview }) => {
-    console.log(preview, "ini preview")
+    console.log(sections, "ini sectionnya")
     return (
         <div className="flex flex-col">
             {/* Show a banner if preview mode is on */}

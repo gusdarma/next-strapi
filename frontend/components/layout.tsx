@@ -1,7 +1,6 @@
-import { ReactText, useState } from "react";
+import { ReactText } from "react";
 import Navbar from "./elements/navbar";
 import Footer from "./elements/footer";
-import NotificationBanner from "./elements/notification-banner";
 
 interface typesReact{
     children: object;
@@ -44,18 +43,12 @@ interface typesReact{
 
 const Layout: React.FC<typesReact> = ({ children, global, pageContext }) => {
     const { navbar, footer, notificationBanner } = global;
-    const [bannerIsShown, setBannerIsShown] = useState(true);
     return (
         <div className="flex flex-col justify-between min-h-screen">
             {/* Aligned to the top */}
             <div className="flex-1">
-                {notificationBanner && bannerIsShown && (
-                    <NotificationBanner
-                        data={notificationBanner}
-                        closeSelf={() => setBannerIsShown(false)}
-                    />
-                )}
-                <Navbar navbar={navbar} pageContext={pageContext} />
+                <Navbar navbar={navbar} pageContext={pageContext} notificationBanner={notificationBanner}/>
+                <div className="py-8"></div>
                 <div>{children}</div>
             </div>
             {/* Aligned to the bottom */}

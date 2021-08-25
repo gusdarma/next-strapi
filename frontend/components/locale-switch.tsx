@@ -73,7 +73,7 @@ const LocaleSwitch: React.FC<typesLocaleSwitch> = ({ pageContext }) => {
 
     return (
         //@ts-ignore
-        <div ref={select} className="relative ml-4 ">
+        <div ref={select} className="relative px-2">
             <button
                 type="button"
                 className="flex items-center justify-between w-20 h-full px-2 py-2 rounded-md cursor-pointer hover:bg-primary-50 hover:text-primary-600 focus:bg-primary-50 focus:text-primary-600 focus:outline-none"

@@ -61,7 +61,8 @@
         "sections.large-video",
         "sections.rich-text",
         "sections.pricing",
-        "sections.lead-form"
+        "sections.lead-form",
+        "sections.embed-video"
       ],
       "pluginOptions": {
         "i18n": {
@@ -76,7 +77,10 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": ["published", "draft"],
+      "enum": [
+        "published",
+        "draft"
+      ],
       "default": "draft",
       "required": true,
       "pluginOptions": {

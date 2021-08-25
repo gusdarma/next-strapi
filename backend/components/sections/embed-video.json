@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_embed_videos",
+  "info": {
+    "name": "Embed Video",
+    "icon": "baby-carriage"
+  },
+  "options": {},
+  "attributes": {
+    "Urlvideo": {
+      "type": "string"
+    }
+  }
+}

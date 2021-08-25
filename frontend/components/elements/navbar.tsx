@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { MdMenu } from "react-icons/md";
-import MobileNavMenu from "./mobile-nav-menu";
 import ButtonLink from "./button-link";
 import NextImage from "./image";
 import CustomLink from "./custom-link";
 import LocaleSwitch from "../locale-switch";
 import { getButtonAppearance } from "utils/button";
+import NotificationBanner from "./notification-banner";
+
 
 
 interface typesNavbar {
@@ -30,17 +30,28 @@ interface typesNavbar {
     pageContext: {
         localizedPaths: string;
     };
+    notificationBanner: {
+        text: string;
+        type: string;
+    };
 }
 
-const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
+const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanner }) => {
     const router = useRouter();
     const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false);
+    const [bannerIsShown, setBannerIsShown] = useState(true);
 
     return (
         <>
             {/* The actual navbar */}
-            <nav className="w-full py-6 duration-100 delay-100 bg-white border-b-2 border-gray-200 sm:py-2">
-                <div className="container flex flex-row items-center justify-between">
+            <nav className="fixed z-10 w-full py-0 duration-100 delay-100 bg-white border-b-2 border-gray-200">
+                {notificationBanner && bannerIsShown && (
+                    <NotificationBanner
+                        data={notificationBanner}
+                        closeSelf={() => setBannerIsShown(false)}
+                    />
+                )}
+                <div className="container flex flex-row items-center justify-between py-4">
                     {/* Content aligned to the left */}
                     <div className="flex flex-row items-center">
                         <Link href="/">
@@ -52,21 +63,6 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
                                 />
                             </a>
                         </Link>
-                        {/* List of links on desktop */}
-                        <ul className="flex-row items-baseline hidden gap-4 ml-10 list-none md:flex">
-                            {navbar.links.map((navLink : any) => (
-                                <li key={navLink.id}>
-                                    <CustomLink
-                                        link={navLink}
-                                        // locale={router.locale}
-                                    >
-                                        <div className="px-2 py-1 hover:text-gray-900">
-                                            {navLink.text}
-                                        </div>
-                                    </CustomLink>
-                                </li>
-                            ))}
-                        </ul>
                     </div>
                     <div className="flex">
                         {/* Locale Switch Mobile */}
@@ -87,6 +83,27 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
                                 <span></span>
                             </div>
                         </button>
+                        {/* List of links on desktop */}
+                        <ul className="flex-row items-baseline hidden gap-4 ml-10 list-none md:flex">
+                            {navbar.links.map((navLink : any) => (
+                                <li key={navLink.id}>
+                                    <CustomLink
+                                        link={navLink}
+                                        // locale={router.locale}
+                                    >
+                                        <div className="p-2 hover:text-gray-900">
+                                            {navLink.text}
+                                        </div>
+                                    </CustomLink>
+                                </li>
+                            ))}
+                        </ul>
+                        {/* Locale Switch Desktop */}
+                        {pageContext.localizedPaths && (
+                            <div className="hidden md:block">
+                                <LocaleSwitch pageContext={pageContext} />
+                            </div>
+                        )}
                         {/* CTA button on desktop */}
                         {navbar.button && (
                             <div className="hidden md:block">
@@ -98,12 +115,6 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext }) => {
                                     )}
                                     compact
                                 />
-                            </div>
-                        )}
-                        {/* Locale Switch Desktop */}
-                        {pageContext.localizedPaths && (
-                            <div className="hidden md:block">
-                                <LocaleSwitch pageContext={pageContext} />
                             </div>
                         )}
                     </div>
