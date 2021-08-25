@@ -62,7 +62,8 @@
         "sections.rich-text",
         "sections.pricing",
         "sections.lead-form",
-        "sections.embed-video"
+        "sections.embed-video",
+        "sections.modal-content"
       ],
       "pluginOptions": {
         "i18n": {

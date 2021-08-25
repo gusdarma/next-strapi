@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_modal_contents",
+  "info": {
+    "name": "Modal Content",
+    "icon": "window-restore",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "buttonOpen": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "buttonClose": {
+      "type": "string"
+    }
+  }
+}

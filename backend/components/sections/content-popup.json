@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_content_popups",
+  "info": {
+    "name": "Content Popup",
+    "icon": "clone",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "buttonText": {
+      "type": "string"
+    }
+  }
+}
