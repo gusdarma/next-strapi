@@ -69,8 +69,6 @@ const LocaleSwitch: React.FC<typesLocaleSwitch> = ({ pageContext }) => {
         };
     }, [locale, router, pageContext]);
 
-    console.log(select, 'ini refnya');
-
     return (
         //@ts-ignore
         <div ref={select} className="relative px-2">

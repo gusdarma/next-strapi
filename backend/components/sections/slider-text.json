@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_slider_texts",
+  "info": {
+    "name": "SliderText",
+    "icon": "angle-double-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "SliderDescription": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.slider-description"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_elements_slider_descriptions",
+  "info": {
+    "name": "SliderDescription",
+    "icon": "align-right"
+  },
+  "options": {},
+  "attributes": {
+    "SliderDescription": {
+      "type": "richtext"
+    }
+  }
+}

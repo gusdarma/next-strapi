@@ -11,7 +11,6 @@ interface typesModalContent {
 }
 
 const ModalContent: React.FC<typesModalContent> = ({data}) => {
-    console.log(data, 'ini datanya modal')
 
     return (
         <Popup title={data.title} description={data.description} buttonOpen={data.buttonOpen} buttonClose={data.buttonClose} />
