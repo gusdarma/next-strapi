@@ -32,14 +32,17 @@ interface typesSection{
     sectionData: {
         __component: string;
     }
+    plaiceholder: any;
 }
 interface typesSections{
     sections:(string | number)[];
     preview?: boolean;
+    imageProps?:(string | number)[];
 }
 
 // Display a section individually
-const Section: React.FC<typesSection> = ({ sectionData }) => {
+const Section: React.FC<typesSection> = ({ sectionData, plaiceholder }) => {
+
 
     // Prepare the component
     const SectionComponent = sectionComponents[sectionData.__component];
@@ -49,7 +52,7 @@ const Section: React.FC<typesSection> = ({ sectionData }) => {
     }
 
     // Display the section
-    return <SectionComponent data={sectionData} />;
+    return <SectionComponent data={sectionData} image={plaiceholder} />;
 };
 
 const PreviewModeBanner = () => {
@@ -74,8 +77,8 @@ const PreviewModeBanner = () => {
 };
 
 // Display the list of sections
-const Sections: React.FC<typesSections> = ({ sections, preview }) => {
-    console.log(sections, "ini sectionnya")
+const Sections: React.FC<typesSections> = ({ sections, preview, imageProps }) => {
+    console.log(imageProps, "ini di sections propsnya");
     return (
         <div className="flex flex-col">
             {/* Show a banner if preview mode is on */}
@@ -85,6 +88,7 @@ const Sections: React.FC<typesSections> = ({ sections, preview }) => {
                 <Section
                     sectionData={section}
                     key={`${section.__component}${section.id}`}
+                    plaiceholder={imageProps}
                 />
             ))}
         </div>
