@@ -12,6 +12,9 @@ import Embed from "./sections/embed-video";
 import ModalContent from "./sections/modal-content";
 import SliderText from "./sections/slider-text";
 
+//Collections Type : Blog
+import HeroBlog from "./sections/hero-blog";
+
 // Map Strapi sections to section components
 const sectionComponents: any = {
     "sections.hero": Hero,
@@ -26,6 +29,7 @@ const sectionComponents: any = {
     "sections.embed-video": Embed,
     "sections.modal-content": ModalContent,
     "sections.slider-text": SliderText,
+    "sections.hero-blogs": HeroBlog,
 };
 
 interface typesSection{
@@ -78,7 +82,6 @@ const PreviewModeBanner = () => {
 
 // Display the list of sections
 const Sections: React.FC<typesSections> = ({ sections, preview, imageProps }) => {
-    console.log(imageProps, "ini di sections propsnya");
     return (
         <div className="flex flex-col">
             {/* Show a banner if preview mode is on */}

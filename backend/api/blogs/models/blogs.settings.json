@@ -2,14 +2,19 @@
   "kind": "collectionType",
   "collectionName": "blogs",
   "info": {
-    "name": "Blogs"
+    "name": "Blogs",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "Photo": {
       "collection": "file",
@@ -17,7 +22,22 @@
       "allowedTypes": ["images", "files", "videos"],
       "plugin": "upload",
       "required": false,
-      "pluginOptions": {}
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["published", "draft"],
+      "default": "draft",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "slug": {
       "pluginOptions": {
@@ -27,6 +47,15 @@
       },
       "type": "string",
       "regex": "^$|^[a-zA-Z/-]+$"
+    },
+    "contentSections": {
+      "type": "dynamiczone",
+      "components": ["sections.hero-blogs"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

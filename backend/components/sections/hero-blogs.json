@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_hero_blogs",
+  "info": {
+    "name": "Hero Blogs",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "richtext"
+    }
+  }
+}

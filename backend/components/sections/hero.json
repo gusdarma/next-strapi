@@ -2,7 +2,8 @@
   "collectionName": "components_slices_heroes",
   "info": {
     "name": "Hero",
-    "icon": "heading"
+    "icon": "heading",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -18,9 +19,12 @@
     "picture": {
       "model": "file",
       "via": "related",
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "smallTextWithLink": {
       "type": "richtext"
@@ -29,6 +33,9 @@
       "type": "component",
       "repeatable": true,
       "component": "links.button-link"
+    },
+    "blogs": {
+      "collection": "blogs"
     }
   }
 }
