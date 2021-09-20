@@ -42,9 +42,22 @@ export async function getPageData(params: { slug: any; }, locale: any, preview: 
     const slug = params.slug.join("/");
     // Find the pages that match this slug
 
-    if(params.slug == ''){
+    if(params.slug == '' && collectionType != 'pages'){
         const pagesData = await fetchAPI(
             `/pages?slug=${collectionType}&_locale=${locale}&status=published${
+                preview ? "&status=draft" : ""
+            }`,
+        );
+        // Make sure we found something, otherwise return null
+        if (pagesData == null || pagesData.length === 0) {
+            return null;
+        }
+
+        // Return the first item since there should only be one result per slug
+        return pagesData[0];
+    } else if(params.slug == '' && collectionType == 'pages'){
+        const pagesData = await fetchAPI(
+            `/pages?slug=${slug}&_locale=${locale}&status=published${
                 preview ? "&status=draft" : ""
             }`,
         );
@@ -61,7 +74,6 @@ export async function getPageData(params: { slug: any; }, locale: any, preview: 
                 preview ? "&status=draft" : ""
             }`,
         );
-
         // Make sure we found something, otherwise return null
         if (pagesData == null || pagesData.length === 0) {
             return null;
@@ -70,8 +82,6 @@ export async function getPageData(params: { slug: any; }, locale: any, preview: 
         // Return the first item since there should only be one result per slug
         return pagesData[0];
     }
-
-
 }
 
 // Get site data from Strapi (metadata, navbar, footer...)
