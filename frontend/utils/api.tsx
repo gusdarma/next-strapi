@@ -29,58 +29,28 @@ export async function fetchAPI(path: string , options = {}) {
     return data;
 }
 
-/**
- *
- * @param {object} params The router params object with slug: { slug: [<slug>] }
- * @param {string} locale The current locale specified in router.locale
- * @param {boolean} preview router isPreview value
- */
-export async function getPageData(params: { slug: any; }, locale: any, preview: any, collectionType: string) {
+export const getData = async (params: any, locale: any) => {
+    if (!params) return 'empty';
+    const data = await fetchAPI(createLinkAPI(params.slug, locale));
+    return data[0];
+}
 
-    console.log(params.slug, 'ini di api');
+export const getSubByArchive = async (postType: string) => {
+    if (!postType) return;
+    console.log(postType);
+    return await fetchAPI(`/${postType}`).then(datas => datas.map((data: any) => data.slug));
+}
 
-    const slug = params.slug.join("/");
-    // Find the pages that match this slug
+const createLinkAPI = (slugArr: Array<string>, locale: string) => {
+    if (!slugArr) return '';
 
-    if(params.slug == '' && collectionType != 'pages'){
-        const pagesData = await fetchAPI(
-            `/pages?slug=${collectionType}&_locale=${locale}&status=published${
-                preview ? "&status=draft" : ""
-            }`,
-        );
-        // Make sure we found something, otherwise return null
-        if (pagesData == null || pagesData.length === 0) {
-            return null;
-        }
-
-        // Return the first item since there should only be one result per slug
-        return pagesData[0];
-    } else if(params.slug == '' && collectionType == 'pages'){
-        const pagesData = await fetchAPI(
-            `/pages?slug=${slug}&_locale=${locale}&status=published${
-                preview ? "&status=draft" : ""
-            }`,
-        );
-        // Make sure we found something, otherwise return null
-        if (pagesData == null || pagesData.length === 0) {
-            return null;
-        }
-
-        // Return the first item since there should only be one result per slug
-        return pagesData[0];
-    }else{
-        const pagesData = await fetchAPI(
-            `/${collectionType}?slug=${slug}&_locale=${locale}&status=published${
-                preview ? "&status=draft" : ""
-            }`,
-        );
-        // Make sure we found something, otherwise return null
-        if (pagesData == null || pagesData.length === 0) {
-            return null;
-        }
-
-        // Return the first item since there should only be one result per slug
-        return pagesData[0];
+    switch(slugArr.length) {
+        case 1: 
+            return `/pages?slug=${slugArr.join('/')}&_locale=${locale}`
+        case 2:
+            return `/${slugArr[0]}?slug=${slugArr[1]}&_locale=${locale}`
+        default:
+            return ''
     }
 }
 

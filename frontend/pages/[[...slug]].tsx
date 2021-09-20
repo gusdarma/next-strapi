@@ -1,5 +1,5 @@
 import ErrorPage from "next/error";
-import { getPageData, fetchAPI, getGlobalData } from "utils/api";
+import { getPageData, fetchAPI, getGlobalData, getData, getSubByArchive } from "utils/api";
 import Sections from "../components/sections";
 import Seo from "../components/elements/seo";
 import { useRouter } from "next/router";
@@ -79,14 +79,29 @@ export async function getStaticPaths(context: { locales: any[]; }) {
             locale: page.locale,
         };
     });
+    
+    await Promise.all(pages.map(async (page) => {
+        if (!page.isArchive) return;
+        const dataSlugDetailArchive = await getSubByArchive(page.slug);
+        
+        dataSlugDetailArchive.map((slug: any) => {
+            console.log(slug);
+            console.log(({
+                params: { slug: [`${page.slug}`, slug] },
+                // Specify the locale to render
+                locale: page.locale,
+            }));
+            
+            paths.push(({
+                params: { slug: [`${page.slug}`, slug] },
+                // Specify the locale to render
+                locale: page.locale,
+            }));
+        });
+    }));
 
-    return { paths, fallback: true };
+    return { paths, fallback: false };
 }
-
-
-
-
-
 
 export async function getStaticProps(context: { params: any; locale: any; locales: any; defaultLocale: any; preview?: null | undefined; }) {
     const { params, locale, locales, defaultLocale, preview = null } = context;
@@ -94,17 +109,24 @@ export async function getStaticProps(context: { params: any; locale: any; locale
     const { base64, img } = await getPlaiceholder("/example.jpg");
 
     console.log(img, '======img');
+    console.log(params, '======params');
+
+    await getData(params, locale);
 
     const globalLocale = await getGlobalData(locale);
     // Fetch pages. Include drafts if preview mode is on
 
     var collectionType = 'pages';
-    const pageData = await getPageData(
-        { slug: !params.slug ? [""] : params.slug },
-        locale,
-        preview,
-        collectionType,
-    );
+    // const pageData = await getPageData(
+    //     { slug: !params.slug ? [""] : params.slug },
+    //     locale,
+    //     preview,
+    //     collectionType,
+    // );
+    const pageData = await getData(params, locale);
+
+    console.log(pageData);
+    
 
     if (pageData == null) {
         // Giving the page no props will trigger a 404 page
@@ -132,7 +154,7 @@ export async function getStaticProps(context: { params: any; locale: any; locale
 			},
             preview,
             sections: contentSections,
-            metadata,
+            // metadata,
             global: globalLocale,
             pageContext: {
                 ...pageContext,
