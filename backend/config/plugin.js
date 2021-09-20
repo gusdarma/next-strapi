@@ -15,5 +15,4 @@ module.exports = ({ env }) => ({
       defaultReplyTo: env("EMAIL_ADDRESS_REPLY"),
     },
   },
-  // ...
 });
