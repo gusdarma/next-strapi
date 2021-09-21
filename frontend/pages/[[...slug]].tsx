@@ -79,11 +79,11 @@ export async function getStaticPaths(context: { locales: any[]; }) {
             locale: page.locale,
         };
     });
-    
+
     await Promise.all(pages.map(async (page) => {
         if (!page.isArchive) return;
         const dataSlugDetailArchive = await getSubByArchive(page.slug);
-        
+
         dataSlugDetailArchive.map((slug: any) => {
             console.log(slug);
             console.log(({
@@ -91,7 +91,7 @@ export async function getStaticPaths(context: { locales: any[]; }) {
                 // Specify the locale to render
                 locale: page.locale,
             }));
-            
+
             paths.push(({
                 params: { slug: [`${page.slug}`, slug] },
                 // Specify the locale to render
@@ -115,18 +115,10 @@ export async function getStaticProps(context: { params: any; locale: any; locale
 
     const globalLocale = await getGlobalData(locale);
     // Fetch pages. Include drafts if preview mode is on
-
-    var collectionType = 'pages';
-    // const pageData = await getPageData(
-    //     { slug: !params.slug ? [""] : params.slug },
-    //     locale,
-    //     preview,
-    //     collectionType,
-    // );
     const pageData = await getData(params, locale);
 
-    console.log(pageData);
-    
+    // console.log(pageData);
+
 
     if (pageData == null) {
         // Giving the page no props will trigger a 404 page
@@ -134,7 +126,7 @@ export async function getStaticProps(context: { params: any; locale: any; locale
     }
 
     // We have the required page data, pass it to the page component
-    const { contentSections, metadata, localizations, slug } = pageData;
+    const { contentSections, localizations, slug } = pageData;
 
     const pageContext = {
         locale: pageData.locale,
@@ -143,6 +135,12 @@ export async function getStaticProps(context: { params: any; locale: any; locale
         slug,
         localizations,
     };
+
+    const metadata = {
+        metaTitle : pageData.metaTitle,
+        metaDescription : pageData.metaDescription,
+        shareImage : pageData.shareImage,
+    }
 
     const localizedPaths = getLocalizedPaths(pageContext);
 
@@ -154,7 +152,7 @@ export async function getStaticProps(context: { params: any; locale: any; locale
 			},
             preview,
             sections: contentSections,
-            // metadata,
+            metadata,
             global: globalLocale,
             pageContext: {
                 ...pageContext,

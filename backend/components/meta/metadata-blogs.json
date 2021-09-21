@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_meta_metadata_blogs",
+  "info": {
+    "name": "metadataBlogs",
+    "icon": "bullseye",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "string"
+    },
+    "shareImage": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "twitterCardType": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "big"
+      ]
+    },
+    "twitterUsername": {
+      "type": "string"
+    }
+  }
+}

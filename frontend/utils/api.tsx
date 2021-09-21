@@ -42,10 +42,11 @@ export const getSubByArchive = async (postType: string) => {
 }
 
 const createLinkAPI = (slugArr: Array<string>, locale: string) => {
-    if (!slugArr) return '';
+
+    if (!slugArr) return `/pages?slug=&_locale=${locale}`;
 
     switch(slugArr.length) {
-        case 1: 
+        case 1:
             return `/pages?slug=${slugArr.join('/')}&_locale=${locale}`
         case 2:
             return `/${slugArr[0]}?slug=${slugArr[1]}&_locale=${locale}`

@@ -16,25 +16,6 @@
     }
   },
   "attributes": {
-    "shortName": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "metadata": {
-      "type": "component",
-      "repeatable": false,
-      "component": "meta.metadata",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "contentSections": {
       "type": "dynamiczone",
       "components": [
@@ -59,7 +40,10 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": ["published", "draft"],
+      "enum": [
+        "published",
+        "draft"
+      ],
       "default": "draft",
       "required": true,
       "pluginOptions": {
@@ -76,6 +60,46 @@
       },
       "type": "string",
       "regex": "^$|^[a-zA-Z/-]+$"
+    },
+    "metaTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "metaDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "shareImage": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "isArchive": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean"
     }
   }
 }

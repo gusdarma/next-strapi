@@ -10,7 +10,7 @@ interface typesRichText{
 const RichText: React.FC<typesRichText> = ({ data }) => {
     return (
         <div className="container py-12 prose prose-lg">
-            <Markdown>{data.content}</Markdown>
+            <Markdown transformImageUri={uri => uri.startsWith("http") ? uri : `${process.env.backend_url}${uri}`}>{data.content}</Markdown>
         </div>
     );
 };

@@ -28,28 +28,28 @@ const Seo : React.FC<typesSeo>  = ({ metadata }) => {
                 description: metadata.metaDescription,
                 // Only include OG image if we have it
                 // Careful: if you disable image optimization in Strapi, this will break
-                ...(metadata.shareImage && {
-                    images: Object.values(metadata.shareImage.formats).map(
-                        (image: any) => {
-                            return {
-                                url: getStrapiMedia(image.url),
-                                width: image.width,
-                                height: image.height,
-                            };
-                        },
-                    ),
-                }),
+                // ...(metadata.shareImage && {
+                //     images: Object.values(metadata.shareImage.formats).map(
+                //         (image: any) => {
+                //             return {
+                //                 url: getStrapiMedia(image.url),
+                //                 width: image.width,
+                //                 height: image.height,
+                //             };
+                //         },
+                //     ),
+                // }),
             }}
             // Only included Twitter data if we have it
-            twitter={{
-                ...(metadata.twitterCardType && {
-                    cardType: metadata.twitterCardType,
-                }),
-                // Handle is the twitter username of the content creator
-                ...(metadata.twitterUsername && {
-                    handle: metadata.twitterUsername,
-                }),
-            }}
+            // twitter={{
+            //     ...(metadata.twitterCardType && {
+            //         cardType: metadata.twitterCardType,
+            //     }),
+            //     // Handle is the twitter username of the content creator
+            //     ...(metadata.twitterUsername && {
+            //         handle: metadata.twitterUsername,
+            //     }),
+            // }}
         />
     );
 };
