@@ -7,4 +7,9 @@ module.exports = ({ env }) => ({
       api_secret: env("CLOUDINARY_API_SECRET"),
     },
   },
+  plugins: {
+    navigation: {
+      allowedLevels: 2,
+    },
+  },
 });

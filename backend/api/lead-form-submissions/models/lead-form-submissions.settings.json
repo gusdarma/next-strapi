@@ -24,6 +24,9 @@
     },
     "location": {
       "type": "string"
+    },
+    "message": {
+      "type": "richtext"
     }
   }
 }

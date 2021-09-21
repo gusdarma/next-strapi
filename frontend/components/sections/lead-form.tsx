@@ -18,6 +18,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
 
     const LeadSchema = yup.object().shape({
         email: yup.string().email().required(),
+        message: yup.string().required(),
     });
 
     return (
@@ -25,7 +26,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
             <h1 className="mb-2 mb-10 text-3xl font-bold">{data.title}</h1>
             <div className="flex flex-col items-center">
                 <Formik
-                    initialValues={{ email: "" }}
+                    initialValues={{ email: "", message: "yeah" }}
                     validationSchema={LeadSchema}
                     onSubmit={async (values, { setSubmitting, setErrors }) => {
                         setLoading(true);
@@ -37,6 +38,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
                                 method: "POST",
                                 body: JSON.stringify({
                                     email: values.email,
+                                    message: values.message,
                                     location: data.location,
                                 }),
                             });
@@ -50,21 +52,34 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
                     }}
                 >
                     {({ errors, touched, isSubmitting }) => (
-                        <div>
-                            <Form className="flex flex-col gap-4 md:flex-row">
-                                <Field
-                                    className="px-4 py-4 text-base border-2 rounded-md focus:outline-none md:py-0"
-                                    type="email"
-                                    name="email"
-                                    placeholder={data.emailPlaceholder}
-                                />
-                                <Button
-                                    type="submit"
-                                    //@ts-ignore
-                                    button={data.submitButton}
-                                    disabled={isSubmitting}
-                                    loading={loading}
-                                />
+                        <>
+                            <Form className="w-1/2">
+                                <div className="">
+                                    <Field
+                                        className="w-full px-4 py-4 text-base border-2 rounded-md focus:outline-none md:py-0"
+                                        type="email"
+                                        name="email"
+                                        placeholder={data.emailPlaceholder}
+                                    />
+                                </div>
+                                <div className="">
+                                    <Field
+                                        className="w-full px-4 py-4 text-base border-2 rounded-md focus:outline-none md:py-0"
+                                        type="text"
+                                        name="message"
+                                        placeholder="Your Message"
+                                        rows={10}
+                                    />
+                                </div>
+                                <div className="">
+                                    <Button
+                                        type="submit"
+                                        //@ts-ignore
+                                        button={data.submitButton}
+                                        disabled={isSubmitting}
+                                        loading={loading}
+                                    />
+                                </div>
                             </Form>
                             <p className="h-12 mt-1 ml-2 text-sm text-left text-red-500">
                                 {(errors.email &&
@@ -73,7 +88,7 @@ const LeadForm: React.FC<typesLeadForm> = ({ data }) => {
                                     //@ts-ignore
                                     errors.api}
                             </p>
-                        </div>
+                        </>
                     )}
                 </Formik>
             </div>

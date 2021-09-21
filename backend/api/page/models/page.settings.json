@@ -40,10 +40,7 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "published",
-        "draft"
-      ],
+      "enum": ["published", "draft"],
       "default": "draft",
       "required": true,
       "pluginOptions": {
@@ -80,11 +77,7 @@
     "shareImage": {
       "collection": "file",
       "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
+      "allowedTypes": ["images", "files", "videos"],
       "plugin": "upload",
       "required": false,
       "pluginOptions": {
@@ -100,6 +93,20 @@
         }
       },
       "type": "boolean"
+    },
+    "navigation": {
+      "model": "navigationitem",
+      "plugin": "navigation",
+      "via": "related",
+      "configurable": false,
+      "hidden": false
     }
+  },
+  "navigation": {
+    "model": "navigationitem",
+    "plugin": "navigation",
+    "via": "related",
+    "configurable": false,
+    "hidden": false
   }
 }
