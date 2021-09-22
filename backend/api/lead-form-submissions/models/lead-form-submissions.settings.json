@@ -16,11 +16,7 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "seen",
-        "contacted",
-        "ignored"
-      ]
+      "enum": ["seen", "contacted", "ignored"]
     },
     "location": {
       "type": "string"
