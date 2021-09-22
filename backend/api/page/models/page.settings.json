@@ -38,28 +38,15 @@
         }
       }
     },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "published",
-        "draft"
-      ],
-      "default": "draft",
-      "required": true,
+    "slug": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
-    },
-    "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
       },
       "type": "string",
-      "regex": "^$|^[a-zA-Z/-]+$"
+      "regex": "^$|^[a-zA-Z/-]+$",
+      "unique": true
     },
     "metaTitle": {
       "pluginOptions": {
@@ -100,6 +87,14 @@
         }
       },
       "type": "boolean"
+    },
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
