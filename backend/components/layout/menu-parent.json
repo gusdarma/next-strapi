@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_menu_parents",
+  "info": {
+    "name": "menuParent",
+    "icon": "angle-double-up"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "menuChild": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sections.menu-child"
+    }
+  }
+}

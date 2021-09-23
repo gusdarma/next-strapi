@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_elements_parent_childests",
+  "info": {
+    "name": "parentChildest",
+    "icon": "angle-left"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "menuChildChildest": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.menu-child-childest"
+    }
+  }
+}

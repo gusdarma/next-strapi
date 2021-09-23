@@ -10,6 +10,11 @@ import NotificationBanner from "./notification-banner";
 
 
 
+import { Menu, Transition } from '@headlessui/react';
+import { Fragment, useEffect, useRef } from 'react';
+import { MdExpandMore } from "react-icons/md";
+
+
 interface typesNavbar {
     navbar :{
         logo: {
@@ -34,13 +39,15 @@ interface typesNavbar {
         text: string;
         type: string;
     };
+    menus: any;
 }
 
-const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanner }) => {
+const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanner, menus }) => {
     const router = useRouter();
     const [mobileMenuIsShown, setMobileMenuIsShown] = useState(false);
     const [bannerIsShown, setBannerIsShown] = useState(true);
 
+    console.log(menus, 'yuhu');
     return (
         <>
             {/* The actual navbar */}
@@ -51,6 +58,8 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanne
                         closeSelf={() => setBannerIsShown(false)}
                     />
                 )}
+
+
                 <div className="container flex flex-row items-center justify-between py-4">
                     {/* Content aligned to the left */}
                     <div className="flex flex-row items-center">
@@ -72,10 +81,10 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanne
                             </div>
                         )}
                         {/* Hamburger menu on mobile */}
-                        <button
-                            onClick={() => setMobileMenuIsShown(!mobileMenuIsShown)}
-                            className="block p-1 md:hidden"
-                        >
+                            <button
+                                onClick={() => setMobileMenuIsShown(!mobileMenuIsShown)}
+                                className="block p-1 md:hidden"
+                            >
                             {/* <MdMenu className="w-auto h-8" /> */}
                             <div className={`hamburger-menu ${mobileMenuIsShown ?'open':''}`}>
                                 <span></span>
@@ -84,8 +93,8 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanne
                             </div>
                         </button>
                         {/* List of links on desktop */}
-                        <ul className="flex-row items-baseline hidden gap-4 ml-10 list-none md:flex">
-                            {navbar.links.map((navLink : any) => (
+                        <ul className="flex-row items-center hidden gap-4 ml-10 list-none md:flex">
+                            {/* {navbar.links.map((navLink : any) => (
                                 <li key={navLink.id}>
                                     <CustomLink
                                         link={navLink}
@@ -96,8 +105,53 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanne
                                         </div>
                                     </CustomLink>
                                 </li>
+                            ))} */}
+                            {menus.menuParent.map( (menu : any) => (
+                                    menu.menuChild.length > 0 ? (
+                                        <Menu as="div" className="relative inline-block text-left">
+                                            <Menu.Button className="inline-flex items-center justify-center p-2 text-gray-700 hover:text-gray-900">
+                                                Expand
+                                                <MdExpandMore className="ml-1 text-primary-600" />
+                                            </Menu.Button>
+                                            <Transition
+                                                as={Fragment}
+                                                enter="transition ease-out duration-100"
+                                                enterFrom="transform opacity-0 scale-95"
+                                                enterTo="transform opacity-100 scale-100"
+                                                leave="transition ease-in duration-75"
+                                                leaveFrom="transform opacity-100 scale-100"
+                                                leaveTo="transform opacity-0 scale-95"
+                                                >
+                                                <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    {menu.menuChild.map ((child : any) =>(
+                                                        <div className="flex px-1 py-1">
+                                                            <Menu.Item>
+                                                                {({ active }) => (
+                                                                    <Link href={child.url}>
+                                                                        <a href="" className="w-full p-2 text-gray-700 hover:text-gray-900">
+                                                                            {child.title}
+                                                                        </a>
+                                                                    </Link>
+                                                                )}
+                                                            </Menu.Item>
+                                                        </div>
+                                                    ))}
+                                                </Menu.Items>
+                                            </Transition>
+                                        </Menu>
+                                    ) : (
+                                        <li>
+                                            <Link href={menu.url}>
+                                                <a href="" className="p-2 text-gray-700 hover:text-gray-900">
+                                                    {menu.title}
+                                                </a>
+                                            </Link>
+                                        </li>
+                                    )
                             ))}
                         </ul>
+
+
                         {/* Locale Switch Desktop */}
                         {pageContext.localizedPaths && (
                             <div className="hidden md:block">

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_elements_menu_child_childests",
+  "info": {
+    "name": "menuChildChildest",
+    "icon": "angle-up"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

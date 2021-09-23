@@ -1,5 +1,5 @@
 import ErrorPage from "next/error";
-import { getPageData, fetchAPI, getGlobalData, getData, getSubByArchive } from "utils/api";
+import { getPageData, fetchAPI, getGlobalData, getData, getSubByArchive, getMenus } from "utils/api";
 import Sections from "../components/sections";
 import Seo from "../components/elements/seo";
 import { useRouter } from "next/router";
@@ -32,7 +32,7 @@ import { getPlaiceholder } from "plaiceholder";
 // optional catch all routes feature. See the related docs:
 // https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
 
-const DynamicPage = ({ sections, metadata, preview, global, pageContext, imageProps } : any) => {
+const DynamicPage = ({ sections, metadata, preview, global, pageContext, imageProps, menus } : any) => {
     const router = useRouter();
 
     // Check if the required data was provided
@@ -46,7 +46,7 @@ const DynamicPage = ({ sections, metadata, preview, global, pageContext, imagePr
     }
 
     return (
-        <Layout global={global} pageContext={pageContext}>
+        <Layout global={global} pageContext={pageContext} menus={menus}>
             {/* Add meta tags for SEO*/}
             <Seo metadata={metadata} />
             {/* Display content sections */}
@@ -116,8 +116,8 @@ export async function getStaticProps(context: { params: any; locale: any; locale
     const globalLocale = await getGlobalData(locale);
     // Fetch pages. Include drafts if preview mode is on
     const pageData = await getData(params, locale);
-
     // console.log(pageData);
+    const menus = await getMenus(locale);
 
 
     if (pageData == null) {
@@ -149,7 +149,8 @@ export async function getStaticProps(context: { params: any; locale: any; locale
             imageProps: {
 				...img,
 				blurDataURL: base64,
-			},
+            },
+            menus,
             preview,
             sections: contentSections,
             metadata,

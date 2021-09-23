@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_menu_children",
+  "info": {
+    "name": "menuChild",
+    "icon": "angle-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

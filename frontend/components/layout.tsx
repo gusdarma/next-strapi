@@ -39,15 +39,16 @@ interface typesReact{
     pageContext: {
         localizedPaths: string;
     };
+    menus: any;
 }
 
-const Layout: React.FC<typesReact> = ({ children, global, pageContext }) => {
+const Layout: React.FC<typesReact> = ({ children, global, pageContext, menus }) => {
     const { navbar, footer, notificationBanner } = global;
     return (
         <div className="flex flex-col justify-between min-h-screen">
             {/* Aligned to the top */}
             <div className="flex-1">
-                <Navbar navbar={navbar} pageContext={pageContext} notificationBanner={notificationBanner}/>
+                <Navbar navbar={navbar} pageContext={pageContext} menus={menus} notificationBanner={notificationBanner}/>
                 <div className="py-8"></div>
                 <div>{children}</div>
             </div>

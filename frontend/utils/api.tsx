@@ -61,3 +61,9 @@ export async function getGlobalData(locale: string) {
     const global = await fetchAPI(`/global?_locale=${locale}`);
     return global;
 }
+
+export async function getMenus(locale: string) {
+    // const global = await fetchAPI(`/global?_locale=en`);
+    const menus = await fetchAPI(`/menus?_locale=${locale}`);
+    return menus;
+}
