@@ -12,7 +12,7 @@ const slugify = require("slugify");
 module.exports = {
   lifecycles: {
     beforeCreate: async (data) => {
-      console.log(data, "ini datanya dimodel");
+      strapi.log.debug("your string or object");
       if (data.slug) {
         data.slug = slugify(data.slug, { lower: true });
       } else if (data.title) {

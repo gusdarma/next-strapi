@@ -11,6 +11,7 @@ import NotificationBanner from "./notification-banner";
 
 
 import { Menu, Transition } from '@headlessui/react';
+import { Disclosure } from '@headlessui/react'
 import { Fragment, useEffect, useRef } from 'react';
 import { MdExpandMore } from "react-icons/md";
 
@@ -94,23 +95,11 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanne
                         </button>
                         {/* List of links on desktop */}
                         <ul className="flex-row items-center hidden gap-4 ml-10 list-none md:flex">
-                            {/* {navbar.links.map((navLink : any) => (
-                                <li key={navLink.id}>
-                                    <CustomLink
-                                        link={navLink}
-                                        // locale={router.locale}
-                                    >
-                                        <div className="p-2 hover:text-gray-900">
-                                            {navLink.text}
-                                        </div>
-                                    </CustomLink>
-                                </li>
-                            ))} */}
                             {menus.menuParent.map( (menu : any) => (
                                     menu.menuChild.length > 0 ? (
                                         <Menu as="div" className="relative inline-block text-left">
                                             <Menu.Button className="inline-flex items-center justify-center p-2 text-gray-700 hover:text-gray-900">
-                                                Expand
+                                                {menu.title}
                                                 <MdExpandMore className="ml-1 text-primary-600" />
                                             </Menu.Button>
                                             <Transition
@@ -176,13 +165,38 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanne
                 {mobileMenuIsShown && (
                     <div className="container absolute pt-12 pb-6 duration-1000 delay-1000 bg-white shadow-lg md:hidden">
                         <ul className="flex flex-col items-baseline gap-4 mb-10 text-xl list-none">
-                            {navbar.links.map((navLink: any) => (
-                                <li key={navLink.id} className="block w-full">
-                                    <CustomLink link={navLink}>
-                                        <div className="flex flex-row items-center justify-between hover:text-gray-900">
-                                            <span>{navLink.text}</span>
-                                        </div>
-                                    </CustomLink>
+                            {menus.menuParent.map((menu: any, id:number) => (
+                                <li key={id} className="block w-full">
+                                    {menu.menuChild.length > 0 ? (
+                                        <Disclosure as="div" className="">
+                                        {({ open }) => (
+                                            <>
+                                                <Disclosure.Button className="flex justify-between w-full font-medium text-left focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                                    <span>{menu.title}</span>
+                                                    <MdExpandMore className={`${
+                                                        open ? 'transform rotate-180' : ''
+                                                    } w-5 h-5 text-purple-500`}
+                                                    />
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-gray-500">
+                                                    {menu.menuChild.map((child: any, id: number) => (
+                                                        <div className="py-2">
+                                                            <Link href={child.url} key={id}>
+                                                                <a href="" className="block w-full">{child.title}</a>
+                                                            </Link>
+                                                        </div>
+                                                    ))}
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                        </Disclosure>
+                                    ) : (
+                                        <Link href={menu.url}>
+                                            <a className="flex flex-row items-center justify-between hover:text-gray-900">
+                                                <span>{menu.title}</span>
+                                            </a>
+                                        </Link>
+                                    )}
                                 </li>
                             ))}
                         </ul>
@@ -195,16 +209,29 @@ const Navbar : React.FC<typesNavbar> = ({ navbar, pageContext, notificationBanne
                             compact
                         />
                     </div>
+                //     <div className="container absolute pt-12 pb-6 duration-1000 delay-1000 bg-white shadow-lg md:hidden">
+                //     <ul className="flex flex-col items-baseline gap-4 mb-10 text-xl list-none">
+                //         {navbar.links.map((navLink: any) => (
+                //             <li key={navLink.id} className="block w-full">
+                //                 <CustomLink link={navLink}>
+                //                     <div className="flex flex-row items-center justify-between hover:text-gray-900">
+                //                         <span>{navLink.text}</span>
+                //                     </div>
+                //                 </CustomLink>
+                //             </li>
+                //         ))}
+                //     </ul>
+                //     <ButtonLink
+                //         button={navbar.button}
+                //         appearance={getButtonAppearance(
+                //             navbar.button.type,
+                //             "light",
+                //         )}
+                //         compact
+                //     />
+                // </div>
                 )}
             </nav>
-
-            {/* Mobile navigation menu panel */}
-            {/* {mobileMenuIsShown && (
-                <MobileNavMenu
-                    navbar={navbar}
-                    closeSelf={() => setMobileMenuIsShown(false)}
-                />
-            )} */}
         </>
     );
 };
