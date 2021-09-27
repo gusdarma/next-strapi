@@ -1,50 +1,54 @@
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import yuhuAsik from 'pages/api/plaiceholder';
 
-
-import Image from "next/image";
+import Image from 'next/image';
 
 interface typesSliderText {
-    data: any;
-    image: any;
+  data: any;
+  image: any;
 }
 
-const SliderText: React.FC<typesSliderText> = ({data, image}) => {
+const SliderText: React.FC<typesSliderText> = ({ data, image }) => {
+  const { SliderDescription } = data;
 
-    const {SliderDescription} = data;
-    // const plaice = yuhuAsik('/example.jpg');
-    // console.log(plaice, 'yuhu ini plaice');
-
-    return (
-        <div className="container py-12">
-            <Carousel infiniteLoop={true} swipeable={true} autoPlay={true} showThumbs={false}>
-                {SliderDescription.map((datas : any) => (
-                    <div className="" key={datas.id}>
-                        <div className="">
-                            <p className=""
-                                dangerouslySetInnerHTML={{
-                                    __html: datas.SliderDescription,
-                                  }}
-                            ></p>
-                        </div>
-                    </div>
-                ))}
-            </Carousel>
-            <Image {...image} placeholder="blur" alt="yuhu" width={600} height={900}/>
-            <div className="py-40">
-                <div className="">
-                    <p className="">
-                        yuhu
-                    </p>
-                </div>
+  return (
+    <div className="container py-12">
+      <Carousel
+        infiniteLoop={true}
+        swipeable={true}
+        autoPlay={true}
+        showThumbs={false}
+      >
+        {SliderDescription.map((datas: any) => (
+          <div className="" key={datas.id}>
+            <div className="">
+              <p
+                className=""
+                dangerouslySetInnerHTML={{
+                  __html: datas.SliderDescription,
+                }}
+              ></p>
             </div>
+          </div>
+        ))}
+      </Carousel>
+      <Image
+        {...image}
+        placeholder="blur"
+        alt="yuhu"
+        width={600}
+        height={900}
+      />
+      <div className="py-40">
+        <div className="">
+          <p className="">yuhu</p>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
-
 
 // export const getStaticProps = async () => {
 //   const { base64, img } = await getPlaiceholder("/plaiceholder.jpg");
@@ -66,6 +70,5 @@ const SliderText: React.FC<typesSliderText> = ({data, image}) => {
 //       <Image {...imageProps} placeholder="blur" />
 //     </div>
 //   );
-
 
 export default SliderText;

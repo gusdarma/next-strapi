@@ -1,80 +1,59 @@
-# project
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/26466516/118417547-e9409d00-b68a-11eb-8162-6afccf9288a9.png" alt="Next.js TypeScript Starter">
+</p>
 
+<p align="center">
+  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&style=for-the-badge&color=5e17eb&labelColor=000000" alt="PRs welcome!" />
 
-This project was generated with [superplate](https://github.com/pankod/superplate).
+  <img alt="License" src="https://img.shields.io/github/license/jpedroschmitz/typescript-nextjs-starter?style=for-the-badge&color=5e17eb&labelColor=000000">
 
-## Getting Started
+  <a href="https://twitter.com/intent/follow?screen_name=jpedroschmitz">
+    <img src="https://img.shields.io/twitter/follow/jpedroschmitz?style=for-the-badge&color=5e17eb&labelColor=000000" alt="Follow @jpedroschmitz" />
+  </a>
+</p>
 
-superplate is a Next.js all-in-one project generator. Create your project with the tools you need without spending hours on setting them up.
+<br>
 
-## Available Scripts
+A TypeScript starter for Next.js that includes all you need to build amazing projects 🔥
 
-### Running the development server.
+- 📏 **ESLint** — Pluggable JavaScript linter
+- 💖 **Prettier** - Opinionated Code Formatter
+- 🐶 **Husky** — Use git hooks with ease
+- 📄 **Commitizen** - Conventional commit messages CLI
+- 🚓 **Commitlint** - Lint commit messages
+- 🖌 **Renovate** - Dependency update tool
+- 🚫 **lint-staged** - Run linters against staged git files
+- 👷 **PR Workflow** - Run Type Check & Linters on pull requests
+- 🗂 **Absolute import** - Import folders and files using the `@` prefix
 
-```bash
-    yarn dev
+## 🚀 Getting started
+
+The best way to start with this template is using `create-next-app`.
+
+```
+npx create-next-app ts-next -e https://github.com/jpedroschmitz/typescript-nextjs-starter
 ```
 
-### Building for production.
+If you prefer you can clone this repository and run the following commands inside the project folder:
 
-```bash
-    yarn build
-```
+1. `npm install` or `yarn`;
+2. `yarn dev`;
 
-### Running the production server.
+To view the project open `http://localhost:3000`.
 
-```bash
-    yarn start
-```
+## 🤝 Contributing
 
-## Learn More
+1. Fork this repository;
+2. Create your branch: `git checkout -b my-new-feature`;
+3. Commit your changes: `git commit -m 'Add some feature'`;
+4. Push to the branch: `git push origin my-new-feature`.
 
-To learn more about **superplate**, please check out the [Documentation](https://github.com/pankod/superplate).
+**After your pull request is merged**, you can safely delete your branch.
 
+## 📝 License
 
-### **TailwindCSS**
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
 
-A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
+---
 
-[Go To Documentation](https://tailwindcss.com/docs)
-
-
-### **SASS/SCSS**
-
-Sass is a stylesheet language that’s compiled to CSS. It allows you to use variables, nested rules, mixins, functions, and more, all with a fully CSS-compatible syntax.
-
-[Go To Documentation](https://sass-lang.com/documentation)
-
-
-### **Zustand**
-
-A small, fast and scalable bearbones state-management solution using simplified flux principles.
-
-[Go To Documentation](https://github.com/pmndrs/zustand)
-
-
-### **next-translate**
-
-Tiny and powerful i18n tools (Next plugin + API) to translate your Next.js pages.
-
-[Go To Documentation](https://github.com/vinissimus/next-translate)
-
-
-### **ESLint**
-
-A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.
-
-[Go To Documentation](https://eslint.org/docs/user-guide/getting-started)
-
-
-### **Prettier**
-
-An opinionated code formatter; Supports many languages; Integrates with most editors.
-
-[Go To Documentation](https://prettier.io/docs/en/index.html)
-
-
-
-## License
-
-MIT
+Made with ♥ by João Pedro Schmitz
