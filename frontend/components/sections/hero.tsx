@@ -1,7 +1,7 @@
 import Markdown from 'react-markdown';
-import { getButtonAppearance } from '../../src/utils/button';
 import ButtonLink from '../elements/button-link';
 import NextImage from '../elements/image';
+import { getButtonAppearance } from '../../src/utils/button';
 
 interface typesHero {
   data: {
